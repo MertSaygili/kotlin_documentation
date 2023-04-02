@@ -23,8 +23,24 @@
         tvResults.text = "Result is: ${numberOne + numberTwo}"
     }
 
-!! basic_image_view.xml code
+!!! basic_image_view.xml code
    btnAddImage.setOnClickListener {
         ivImage.setImageResource(R.drawable.image)
    }
+
+!!! basic_radio_button_check_box.xml code
+btnOrder.setOnClickListener {
+        val checkedMeatRadioButtonId = rgMeat.checkedRadioButtonId
+        val meatName = findViewById<RadioButton>(checkedMeatRadioButtonId).text.toString()
+        val cheese = cbCheese.isChecked
+        val onion = cbOnion.isChecked
+        val salad = cbSalad.isChecked
+        val orderString = "You ordered a burger with:\n" +
+                "$meatName\n" +
+                (if(cheese) "Cheese\n" else "") +
+                (if(onion) "Onion\n" else "") +
+                (if(salad) "Salad\n" else "")
+
+        tvResults.text = orderString
+    }
 
