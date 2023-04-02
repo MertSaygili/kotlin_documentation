@@ -54,3 +54,36 @@ btnOrder.setOnClickListener {
     // Toast.makeText(this, "You clicked to the Button",  Toast.LENGTH_LONG).show()
     // Toast.makeText(applicationContext, "You clicked to the Button",  Toast.LENGTH_LONG).show()
 
+!!! Activity Navigation
+    // First screen
+    btnOpenActivity.setOnClickListener {
+        Intent(this, SecondActivity::class.java).also {
+            startActivity(it)
+        }
+    }
+    // Second screen
+    btnBack.setOnClickListener {
+        finish()
+    }
+!!! Send Data Between activities
+    // First Screen
+    btnSendData.setOnClickListener {
+        val name = etName.text.toString()
+        val age = etAge.text.toString().toInt()
+        val country = etCountry.text.toString()
+
+        Intent(this, SecondActivity::class.java).also {
+            it.putExtra("EXTRA_NAME", name)
+            it.putExtra("EXTRA_AGE", age)
+            it.putExtra("EXTRA_COUNTRY", country)
+            startActivity(it)
+        }
+    }
+    // Second screen
+    val name = intent.getStringExtra("EXTRA_NAME")
+    val age = intent.getIntExtra("EXTRA_AGE", 0)
+    val country = intent.getStringExtra("EXTRA_COUNTRY")
+
+    val info = "name: $name\nage: $age\ncountry: $country"
+    tvPersonInformation.text = info
+
