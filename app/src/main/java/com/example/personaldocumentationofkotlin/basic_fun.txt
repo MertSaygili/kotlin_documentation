@@ -1,0 +1,18 @@
+!!! constraint_layout.xml code
+    btnApply.setOnClickListener {
+         val firstName = etFirstName.text.toString();
+         val lastName = etLastName.text.toString();
+         val birthdate = etBirthdate.text.toString();
+         val country = etCountry.text.toString();
+         Log.d("MainActivity", "$firstName, $lastName, $birthdate, $country")
+    }
+
+!!! basic_textView.xml code
+    btnIncrement.setOnClickListener {
+        tvCount.text = "Let's count together: ${++count}"
+    }
+
+    btnDecrement.setOnClickListener {
+        tvCount.text = "Let's count together: ${--count}"
+    }
+
