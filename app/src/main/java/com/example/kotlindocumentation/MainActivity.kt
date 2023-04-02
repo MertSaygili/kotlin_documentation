@@ -12,13 +12,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnAdd.setOnClickListener {
-            val numberOne = etFirstNum.text.toString().toInt()
-            val numberTwo = etSecondNum.text.toString().toInt()
-            tvResults.text = "Result is: ${numberOne + numberTwo}"
-        }
-
-
     }
-
 }
