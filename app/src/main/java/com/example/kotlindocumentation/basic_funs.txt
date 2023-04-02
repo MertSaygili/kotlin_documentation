@@ -44,3 +44,13 @@ btnOrder.setOnClickListener {
         tvResults.text = orderString
     }
 
+!!! CustomToast
+    btnShowToast.setOnClickListener {
+        Toast(this).apply {
+            duration = Toast.LENGTH_LONG
+            view = layoutInflater.inflate(R.layout.custom_toast, clToast)
+            show()
+        }
+    // Toast.makeText(this, "You clicked to the Button",  Toast.LENGTH_LONG).show()
+    // Toast.makeText(applicationContext, "You clicked to the Button",  Toast.LENGTH_LONG).show()
+
