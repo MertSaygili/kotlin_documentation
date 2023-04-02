@@ -1,4 +1,4 @@
-package com.example.personaldocumentationofkotlin
+package com.example.kotlindocumentation
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

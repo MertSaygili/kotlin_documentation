@@ -1,4 +1,4 @@
-package com.example.personaldocumentationofkotlin
+package com.example.kotlindocumentation
 
 import org.junit.Test
 
