@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("MainActivity", "${permissions[i]} granted")
                 }
                 else{
-                    Log.d("MainActivity","${permissions[i]} not granted")
+                    Log.d("MainActivity","Nalet olsun")
                 }
             }
         }
