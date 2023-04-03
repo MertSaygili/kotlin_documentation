@@ -6,6 +6,8 @@ import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_toast.*
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
@@ -17,44 +19,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnRequestPermissions.setOnClickListener {
-            requestPermissions()
-        }
-    }
-
-    private fun hasWriteExternalStoragePermission() = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-    private fun hasLocationForegroundPermission() = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-    // private fun hasLocationBackgroundPermission() = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
-    private fun requestPermissions() {
-        var permissionToRequest = mutableListOf<String>()
-
-        if(!hasWriteExternalStoragePermission()){
-            permissionToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if(!hasLocationForegroundPermission()){
-            permissionToRequest.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-        }
-
-        if(permissionToRequest.isNotEmpty()){
-            ActivityCompat.requestPermissions(this, permissionToRequest.toTypedArray(), 0)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == 0 && grantResults.isNotEmpty()){
-            for(i in grantResults.indices){
-                if(grantResults[i] == PackageManager.PERMISSION_GRANTED){
-                    Log.d("MainActivity", "${permissions[i]} granted")
-                }
-                else{
-                    Log.d("MainActivity","${permissions[i]} not granted")
-                }
+        btnPickImage.setOnClickListener {
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(it, 0)
             }
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode == 0){
+            val uri = data?.data
+            ivPhoto.setImageURI(uri)
         }
     }
 }
