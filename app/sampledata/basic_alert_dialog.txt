@@ -1,0 +1,72 @@
+package com.example.kotlindocumentation
+
+import android.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val addContactDialog = AlertDialog.Builder(this)
+            .setTitle("Add Contact")
+            .setMessage("Do you want to add Mr. Poop to your contacts lists?")
+            .setIcon(R.drawable.ic_add_contact)
+            .setPositiveButton("Yes") {_, _ ->
+                Toast.makeText(this, "You added Mr.Poop to your contacts list", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("No") { _, _ ->
+                Toast.makeText(this, "You didn't add Mr.Poop to your contacts list", Toast.LENGTH_SHORT).show()
+            }.create()
+
+        val options = arrayOf("First Item", "Second Item", "Third Item", "Fourth Item")
+
+        val singleChoiceDialog = AlertDialog.Builder(this)
+            .setTitle("Choose one of these options")
+            .setSingleChoiceItems(options, 0) {_, i ->
+                Toast.makeText(this, "You clicked on ${options[i]}", Toast.LENGTH_SHORT).show()
+            }
+            .setPositiveButton("Accept") {_, _ ->
+                Toast.makeText(this, "You accepted the SingleChoiceDialog", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Decline") { _, _ ->
+                Toast.makeText(this, "You declined the SingleChoiceDialog", Toast.LENGTH_SHORT).show()
+            }.create()
+
+        val multiChoiceDialog = AlertDialog.Builder(this)
+            .setTitle("Choose one of these options")
+            .setMultiChoiceItems(options, booleanArrayOf(false, false, false, false)) {_, i, isChecked ->
+                if(isChecked){
+                    Toast.makeText(this, "You checked ${options[i]}", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(this, "You unchecked ${options[i]}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setPositiveButton("Accept") {_, _ ->
+                Toast.makeText(this, "You accepted the multiChoiceDialog", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Decline") { _, _ ->
+                Toast.makeText(this, "You declined the multiChoiceDialog", Toast.LENGTH_SHORT).show()
+            }.create()
+
+        btnShowDialog1.setOnClickListener {
+            addContactDialog.show()
+        }
+
+        btnShowDialog2.setOnClickListener {
+            singleChoiceDialog.show()
+        }
+
+        btnShowDialog3.setOnClickListener {
+            multiChoiceDialog.show()
+        }
+
+    }
+}
