@@ -26,10 +26,5 @@
         android:title="Close App"
         android:icon="@drawable/ic_close"
         app:showAsAction="never" />
-
-
-
-
-
 </menu>
 
