@@ -1,5 +1,3 @@
-package com.example.kotlindocumentation
-
 import android.app.Notification.Action
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
